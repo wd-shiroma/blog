@@ -75,9 +75,6 @@ pagination_dir: page
 #theme: landscape
 theme: cactus
 
-plugins:
-  hexo-generator-cname
-
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -85,13 +82,3 @@ deploy:
   repo: git@github.com:wd-shiroma/blog.git
   branch: gh-pages
 
-
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-  hub:
-  content:
-  content_limit: 140
-  content_limit_delim: ' '
-  order_by: -date

@@ -13,11 +13,15 @@ HN: ぐすくま
 
 大抵はマストドンで んなぁんなぁ 言ってる
 
-[mstdn.jp](https://mstdn.jp/@shiroma)
+[アビス丼 (本垢)](https://abyss.fun/@guskma)
 
-[theboss.tech](https://theboss.tech/@shiroma)
+[じぇいぴー (サブ垢)](https://mstdn.jp/@shiroma)
 
-[twitter](https://twitter.com/@wd_shiroma)
+[ざぼてく (サブ垢)](https://theboss.tech/@shiroma)
 
-[github](https://github.com/wd-shiroma)
+[無能丼 (サブ垢)](https://theboss.tech/@shiroma)
+
+[鳥 (監視垢)](https://twitter.com/@wd_shiroma)
+
+[ぎふはぶ (ID変えたい)](https://github.com/wd-shiroma)
 
