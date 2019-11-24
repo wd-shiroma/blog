@@ -82,7 +82,7 @@ plugins:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:wd-shiroma/blog.git
+  repo: https://wd-shiroma@github.com/wd-shiroma/blog.git
   branch: gh-pages
 
 
