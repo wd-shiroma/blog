@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "braces": "^3.0.2",
-    "fsevents": "^2.1.2",
     "hexo": "^4.0.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^0.1.5",
@@ -31,5 +30,8 @@
     "rebuild": "hexo clean; hexo generate;",
     "build": "hexo generate",
     "watch": "hexo generate --watch"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.1.2"
   }
 }
