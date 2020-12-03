@@ -82,7 +82,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2017/12/07/advent-calendar-2017-jp/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2017/10/12/how-to-tooterminal/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -147,7 +147,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>最近はTheBOSSが運営する<a href="https://theboss.tech" target="_blank" rel="noopener">ボス丼</a>で遊ばせていただいているぐすくまです。</p>
+    <p>最近はTheBOSSが運営する<a target="_blank" rel="noopener" href="https://theboss.tech">ボス丼</a>で遊ばせていただいているぐすくまです。</p>
 <p>ボス丼はインスタンスが認識した外部インスタンスのカスタム絵文字をぱｋ自ドメインのカスタム絵文字として取り込むスクリプトを導入しており、総カスタム絵文字数は現時刻時点で1316にも及んでいます。</p>
 <p>2時間に1度cronを回してるとのことですが、いかんせん絵文字数が多すぎるので何の絵文字が新たに追加されたかが分からないわけです。</p>
 <p>せっかく追加された新しい絵文字が使われずに埋もれてしまうのはもったいない。というか僕が新しい絵文字が入って来たら使ってみたい！という思いがあり。カスタム絵文字検出botを作りました。</p>
@@ -155,7 +155,7 @@
 <p>動作としては単純なもので、インスタンスのカスタム絵文字取得API(/api/v1/custom_emojis)から一覧を取得し、bot内部で管理しているDBに登録してあるカスタム絵文字一覧にない絵文字と照らし合わせて、ない絵文字はDBに新規登録＆トゥート。…みたいな処理です。</p>
 <p>今回Node.jsで初めて作ってみましたが、最近の環境はモジュール入れやすくていいですねぇ。ECMAscript特有の非同期処理がウザいのが玉に瑕だけど。</p>
 <p>一応githubで公開してるので、使いたい人がいたら使ってやってください。</p>
-<p><a href="https://github.com/wd-shiroma/custom-emoji-checker" target="_blank" rel="noopener">https://github.com/wd-shiroma/custom-emoji-checker</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma/custom-emoji-checker">https://github.com/wd-shiroma/custom-emoji-checker</a></p>
 
   </div>
 </article>
