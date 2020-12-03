@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Gusk-ma project</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.drdr.work/"/>
+  <updated>2020-12-03T15:02:59.850Z</updated>
+  <id>https://blog.drdr.work/</id>
+  
+  <author>
+    <name>guskma@abyss.fun</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Slackライク分散SNS「Matrix」の紹介</title>
+    <link href="https://blog.drdr.work/2020/12/03/advent-calendar-2020-fediverse-1/"/>
+    <id>https://blog.drdr.work/2020/12/03/advent-calendar-2020-fediverse-1/</id>
+    <published>2020-12-03T14:27:16.000Z</published>
+    <updated>2020-12-03T15:02:59.850Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;matrix-logo-white.svg&quot; alt=&quot;matrix logo&quot;&gt;&lt;/p&gt;
+&lt;p&gt;この記事は &lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>美味しそう</title>
+    <link href="https://blog.drdr.work/2019/12/13/advent-calendar-2019-delicious/"/>
+    <id>https://blog.drdr.work/2019/12/13/advent-calendar-2019-delicious/</id>
+    <published>2019-12-13T12:40:59.000Z</published>
+    <updated>2020-12-03T14:20:37.650Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;20190404_102039902_iOS.jpeg&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;iframe src=&quot;https://abyss.fun/@guskma/100832387428733263/embed&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分散SNSアドベントカレンダー 1日目「分散SNS入門」</title>
+    <link href="https://blog.drdr.work/2019/12/01/advent-calendar-2019-fediverse/"/>
+    <id>https://blog.drdr.work/2019/12/01/advent-calendar-2019-fediverse/</id>
+    <published>2019-11-30T15:00:00.000Z</published>
+    <updated>2020-12-03T14:20:37.760Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;これは &lt;a href=&quot;https://adventar.org/calendars/4408&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;分散SNS Advent Calendar 2019&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git管理型WikiのGollumにマストドン認証を乗せるやつ</title>
+    <link href="https://blog.drdr.work/2018/10/18/gollum-mastodon/"/>
+    <id>https://blog.drdr.work/2018/10/18/gollum-mastodon/</id>
+    <published>2018-10-18T08:55:00.000Z</published>
+    <updated>2020-12-03T14:20:37.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;昨日、&lt;a href=&quot;https://wiki.abyss.fun&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="gollum" scheme="https://blog.drdr.work/tags/gollum/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>青森旅行2018 1日目 (前編) ～強いぞ！我らの南部家！編</title>
+    <link href="https://blog.drdr.work/2018/10/08/travel-blueforest-2018-1/"/>
+    <id>https://blog.drdr.work/2018/10/08/travel-blueforest-2018-1/</id>
+    <published>2018-10-08T07:39:41.000Z</published>
+    <updated>2020-12-03T14:20:37.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;9/22-24の間、よくわからないですが青森に行ってきました。&lt;/p&gt;
+&lt;p&gt;記事の書き始めなので、もうちょっと気の利いたことを書きたかったんですがね。&lt;br&gt;ノリと勢いだけで決めたのでよくわからんのですよね。。。自分でもなんとなくで青森行きを決めました！&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="travel" scheme="https://blog.drdr.work/tags/travel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tooterminal v2.0.0 リリースとか、ここ最近やったことについて</title>
+    <link href="https://blog.drdr.work/2018/09/20/tooterminal-v2-0-0/"/>
+    <id>https://blog.drdr.work/2018/09/20/tooterminal-v2-0-0/</id>
+    <published>2018-09-20T06:14:48.000Z</published>
+    <updated>2020-12-03T14:20:37.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;(初めに)今までにあったことを読みやすさ度外視で書きなぐっているので、読むのに飽きたら諦めてページを閉じるのが精神的に負担がなくておすすめです。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;本日12時頃、久しぶりにTooterminalをアップデートし、メジャーバージョンを上げたv2.0.0に
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Tooterminal" scheme="https://blog.drdr.work/tags/Tooterminal/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>本田オフの思い出</title>
+    <link href="https://blog.drdr.work/2017/12/12/advent-calendar-2017-sximada/"/>
+    <id>https://blog.drdr.work/2017/12/12/advent-calendar-2017-sximada/</id>
+    <published>2017-12-11T15:20:40.000Z</published>
+    <updated>2020-12-03T14:20:37.610Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;この記事は &lt;a href=&quot;https://adventar.org/calendars/2179&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;しむどん Advent Calendar 2017&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「ナナチ」</title>
+    <link href="https://blog.drdr.work/2017/12/07/advent-calendar-2017-jp/"/>
+    <id>https://blog.drdr.work/2017/12/07/advent-calendar-2017-jp/</id>
+    <published>2017-12-06T15:00:00.000Z</published>
+    <updated>2020-12-03T14:20:37.590Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;この記事は&lt;a href=&quot;https://adventar.org/calendars/2228&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;mstdn.jp Advent Calendar 2017&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Tooterminalのススメ</title>
+    <link href="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"/>
+    <id>https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/</id>
+    <published>2017-12-06T15:00:00.000Z</published>
+    <updated>2020-12-03T14:20:37.630Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;この記事は&lt;a href=&quot;https://adventar.org/calendars/2265&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Mastodon 2 Advent Calendar
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>カスタム絵文字検出Bot作りました</title>
+    <link href="https://blog.drdr.work/2017/10/30/custom-emoji-checker/"/>
+    <id>https://blog.drdr.work/2017/10/30/custom-emoji-checker/</id>
+    <published>2017-10-30T03:59:11.000Z</published>
+    <updated>2020-12-03T14:20:37.760Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近はTheBOSSが運営する&lt;a href=&quot;https://theboss.tech&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Tooterminalについて</title>
+    <link href="https://blog.drdr.work/2017/10/12/how-to-tooterminal/"/>
+    <id>https://blog.drdr.work/2017/10/12/how-to-tooterminal/</id>
+    <published>2017-10-12T02:25:59.000Z</published>
+    <updated>2020-12-03T14:20:37.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;後で固定ページ作成しますが、ひとまずこちらに下書きがてら紹介を。&lt;/p&gt;
+&lt;p&gt;TooterminalはCiscoIOSのターミナル画面を模した、マストドン用Webクライアントです。&lt;/p&gt;
+&lt;p&gt;show running-config, configure
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>とりあえず作っただけ</title>
+    <link href="https://blog.drdr.work/2017/10/11/init/"/>
+    <id>https://blog.drdr.work/2017/10/11/init/</id>
+    <published>2017-10-11T09:41:20.000Z</published>
+    <updated>2020-12-03T14:20:37.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;とりあえず作っただけです。&lt;/p&gt;
+&lt;p&gt;Hexo便利ですね！&lt;/p&gt;
+&lt;p&gt;今後アップデートした内容とかもしかしたら書くかもしれないし書かないかもしれないし。&lt;/p&gt;
+&lt;p&gt;個人ページの顔という体裁で作っただけなので、あしからず。&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

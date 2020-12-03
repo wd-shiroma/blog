@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="この記事はMastodon 2 Advent Calendar 2017の7日目の記事として投稿しています。  今回の記事では、Tooterminalについて良く知らない人向けに、さらっと概要の説明から、使用用途別のコンフィグ投入例などを紹介していきたいと思います。 Tooterminalについてこれはなに？Mastodon専用Webクライアントです。NaumanniやHalcyonのような、W">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tooterminalのススメ">
+<meta property="og:url" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/index.html">
+<meta property="og:site_name" content="Gusk-ma project">
+<meta property="og:description" content="この記事はMastodon 2 Advent Calendar 2017の7日目の記事として投稿しています。  今回の記事では、Tooterminalについて良く知らない人向けに、さらっと概要の説明から、使用用途別のコンフィグ投入例などを紹介していきたいと思います。 Tooterminalについてこれはなに？Mastodon専用Webクライアントです。NaumanniやHalcyonのような、W">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/init.png">
+<meta property="og:image" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/appname.png">
+<meta property="og:image" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/ltl_htl.png">
+<meta property="og:image" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/nnaa.png">
+<meta property="og:image" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/sh_stat_id.png">
+<meta property="article:published_time" content="2017-12-06T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-03T14:20:37.630Z">
+<meta property="article:author" content="guskma@abyss.fun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/init.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Tooterminalのススメ</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/products/">Products</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma">Projects</a></li>
+         
+          <li><a href="https://blog.drdr.work/atom.xml">RSS</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/12/07/advent-calendar-2017-jp/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/30/custom-emoji-checker/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&text=Tooterminalのススメ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&is_video=false&description=Tooterminalのススメ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tooterminalのススメ&body=Check out this article: https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&name=Tooterminalのススメ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://mastportal.info/intent?text=Tooterminalのススメ+-+Gusk-ma project+https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fab fa-mastodon " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tooterminal%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">1.</span> <span class="toc-text">Tooterminalについて</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%81%93%E3%82%8C%E3%81%AF%E3%81%AA%E3%81%AB%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">これはなに？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E4%BD%95%E3%81%8C%E9%81%95%E3%81%86%E3%81%AE%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">公式クライアントと何が違うの？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tooterminal%E3%81%A7%E4%BD%95%E3%81%8C%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%AE%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">Tooterminalで何が出来るの？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tooterminal%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%81%AE%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">Tooterminalってどうやって使うの？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E9%80%94%E5%88%A5%E3%80%81%E8%A8%AD%E5%AE%9A%E6%8A%95%E5%85%A5%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">用途別、設定投入例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E5%90%8D%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%97%E3%81%A6%E3%83%88%E3%82%A5%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">クライアント名を変更してトゥートするクライアントとして利用する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LTL%E3%81%A8HTL%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E8%A6%8B%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.2.</span> <span class="toc-text">LTLとHTLをまとめて見るためのクライアントとして利用する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8C%E3%82%93%E3%81%AA%E3%81%81%E3%80%8D%E3%81%AB%E5%8D%B3%E6%99%82%E5%8F%8D%E5%BF%9C%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.3.</span> <span class="toc-text">「んなぁ」に即時反応できるクライアントとして利用する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E7%B4%B0%E3%80%85%E3%81%A8%E3%81%97%E3%81%9FTIPS"><span class="toc-number">2.4.</span> <span class="toc-text">その他の細々としたTIPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%BE%8C%E3%81%AE%E8%BF%BD%E5%8A%A0%E4%BA%88%E5%AE%9A%E6%A9%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">今後の追加予定機能</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Tooterminalのススメ
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Gusk-ma project</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-12-06T15:00:00.000Z" itemprop="datePublished">2017-12-07</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <hr>
+<p>この記事は<a href="https://adventar.org/calendars/2265" target="_blank" rel="noopener">Mastodon 2 Advent Calendar 2017</a>の7日目の記事として投稿しています。</p>
+<hr>
+<p>今回の記事では、Tooterminalについて良く知らない人向けに、さらっと概要の説明から、使用用途別のコンフィグ投入例などを紹介していきたいと思います。</p>
+<h2 id="Tooterminalについて"><a href="#Tooterminalについて" class="headerlink" title="Tooterminalについて"></a>Tooterminalについて</h2><h3 id="これはなに？"><a href="#これはなに？" class="headerlink" title="これはなに？"></a>これはなに？</h3><p>Mastodon専用Webクライアントです。<br><a href="https://github.com/naumanni/naumanni" target="_blank" rel="noopener">Naumanni</a>や<a href="https://halcyon.social" target="_blank" rel="noopener">Halcyon</a>のような、Webブラウザで動かすことのできるクライアントの一つです。</p>
+<h3 id="公式クライアントと何が違うの？"><a href="#公式クライアントと何が違うの？" class="headerlink" title="公式クライアントと何が違うの？"></a>公式クライアントと何が違うの？</h3><p>同じWebブラウザなら公式が提供してるクライアントがありますよね。<br>それでも他のクライアントが出るのは、公式だけではカバーしきれない部分がいくつかあるからなわけで。</p>
+<ul>
+<li>複数のインスタンスをまとめて表示したい！</li>
+<li>TwitterのUIが好き！</li>
+<li>その他機能を充実させたい！</li>
+</ul>
+<p>みたいな、独自の思想を持って作られている感じはあります。</p>
+<p>Tooterminalはそもそも<del>業務中にマストドンをしたい</del>環境に溶け込んだクライアントを目指して作られたものです。<br>そこから色々と機能を盛り込んでいくうちに、特定の用途によっては、公式クライアント以上に使い勝手の良いクライアントに成長したと思います。</p>
+<h3 id="Tooterminalで何が出来るの？"><a href="#Tooterminalで何が出来るの？" class="headerlink" title="Tooterminalで何が出来るの？"></a>Tooterminalで何が出来るの？</h3><p>以前の記事にも書きましたが、他のクライアントでは出来ないことを中心に改めて書いておきたいと思います。</p>
+<ul>
+<li>LTL、HTL、通知TLなど、複数TLをまとめて表示</li>
+<li>豊富な正規表現フィルター機能<ul>
+<li>複数フィルターの設定</li>
+<li>非表示フィルター以外のフィルター(強調フィルター)</li>
+</ul>
+</li>
+<li>クライアント名、Website名の変更</li>
+<li>トゥートした当時のLTLを表示する機能(max_idの指定)</li>
+<li>ショートカットキーを組み合わせたファボ、ブースト機能</li>
+<li>アカウント情報の詳細表示(登録日、登録してから何日か、等)</li>
+</ul>
+<p>具体的にどういう用途で使えばいいのかっていうのを今回の記事のメインにしていますので、もう少し読み進めていただければ幸いです。</p>
+<h3 id="Tooterminalってどうやって使うの？"><a href="#Tooterminalってどうやって使うの？" class="headerlink" title="Tooterminalってどうやって使うの？"></a>Tooterminalってどうやって使うの？</h3><p>とりあえず<a href="https://wd-shiroma.github.io/tooterminal" target="_blank" rel="noopener">Tooterminal</a>にアクセスしてみましょう。</p>
+<p><img src="init.png" alt="なんじゃこりゃな感じのやつ"></p>
+<p>チュートリアル的なものは無く、いきなり真っ黒な画面が表示されます。<br><del>チュートリアル作るのが面倒くさかったわけではありません。本当です。</del></p>
+<p>初期状態ではログインページは開かないし何が出来るか良く分からない画面になってます。</p>
+<p>ここからはコンソール操作で、コマンドを入力していくことで少しずつ機能を設定していくイメージです。</p>
+<p>このコンソールは、CiscoIOSという、Cisco社が開発しているネットワーク機器に実装されているファームウェアのコンソール画面を模した作りになっています。<br>なので、操作方法はCisco社製NWスイッチ/ルータを触ったことがある人であれば、抵抗感少なく使い始めることが出来ると思います。</p>
+<p>ネットワークエンジニアならCCNAを取得するのに触ったことがある人も多いかと思いますが、そうでない人は難しいところもあると思います。</p>
+<p>どういうコマンドを打てばいいのか、という事については、<a href="https://github.com/wd-shiroma/tooterminal/blob/gh-pages/README.md" target="_blank" rel="noopener">GithubリポジトリのREADME.md</a>を参照してください。<br><del>書くのが面倒くさかったわけではありません。本当です。</del></p>
+<h2 id="用途別、設定投入例"><a href="#用途別、設定投入例" class="headerlink" title="用途別、設定投入例"></a>用途別、設定投入例</h2><p>基本的な使い方は、<a href="https://github.com/wd-shiroma/tooterminal/blob/gh-pages/README.md" target="_blank" rel="noopener">GithubリポジトリのREADME.md</a>に書いてあるので、今回の記事では「公式クライアントでは出来ないこういう使い方が出来るよ！」な視点で初期状態からコンフィグを投入していく流れを紹介してみようと思います。</p>
+<h3 id="クライアント名を変更してトゥートするクライアントとして利用する。"><a href="#クライアント名を変更してトゥートするクライアントとして利用する。" class="headerlink" title="クライアント名を変更してトゥートするクライアントとして利用する。"></a>クライアント名を変更してトゥートするクライアントとして利用する。</h3><p>たまに見かけますが、クライアント名を自由に設定してる人いますよね？</p>
+<p><img src="appname.png" alt="変わったクライアント名の人の例"></p>
+<p>Tooterminalでもこのように自由なクライアント名を設定することが出来るようになっています。</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> configure terminal </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># クライアント名の設定</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> application name <span class="string">'深界四層 ナナチのアジト'</span> ←スペースを挟む場合はクォーテーションで括る</span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># クライアントのURL設定</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> application website http://miabyss.com ←スペースがない場合はクオーテーション省略可能</span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="built_in">exit</span></span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> <span class="comment"># 設定の確認</span></span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> show running-config </span></span><br><span class="line">&#123;</span><br><span class="line">    "application": &#123;</span><br><span class="line">        "name": "深界四層 ナナチのアジト", ←名前が変わっていることを確認</span><br><span class="line">        "website": "http://miabyss.com", ←URLが変わっていることを確認</span><br><span class="line">        "uris": "urn:ietf:wg:oauth:2.0:oob",</span><br><span class="line">        "scopes": &#123;</span><br><span class="line">            "read": true,</span><br><span class="line">            "write": true,</span><br><span class="line">            "follow": true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    "terminal": &#123;</span><br><span class="line">        "length": 0</span><br><span class="line">    &#125;,</span><br><span class="line">    "instances": &#123;</span><br><span class="line">        "terminal": &#123;</span><br><span class="line">            "logging": &#123;</span><br><span class="line">                "favourite": true,</span><br><span class="line">                "reblog": true,</span><br><span class="line">                "mention": true,</span><br><span class="line">                "following": true</span><br><span class="line">            &#125;,</span><br><span class="line">            "monitor": ［]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> <span class="comment"># 保存をすると、次回起動時にも同じ設定を利用することができます。</span></span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> write memory </span></span><br><span class="line">Building configuration...</span><br><span class="line">[OK]</span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> instance abyss</span></span><br><span class="line">Input instance domain: abyss.fun</span><br><span class="line"></span><br><span class="line">...初回アクセス時はここでログイン画面に遷移する...</span><br><span class="line"></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> instance abyss</span></span><br><span class="line">Hello! ぐすくま@船団キャラバン @guskma</span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# toot</span><br></pre></td></tr></table></figure>
+
+<p>この状態でトゥートをしてみると、クライアント名が「深界四層 ナナチのアジト」に変わります。</p>
+<p>クライアントURLのリンクを踏めるクライアントを利用しているようであれば、website で設定したURLに遷移することもできます。</p>
+<h3 id="LTLとHTLをまとめて見るためのクライアントとして利用する。"><a href="#LTLとHTLをまとめて見るためのクライアントとして利用する。" class="headerlink" title="LTLとHTLをまとめて見るためのクライアントとして利用する。"></a>LTLとHTLをまとめて見るためのクライアントとして利用する。</h3><p>マストドンを使っていると必ず出てくる要望ですが。</p>
+<p><strong>「HTLとLTLをまとめた一つのTLが欲しい！」</strong></p>
+<p>僕もそう思います。なので、実装しました！</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> configure terminal </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># トゥートを見やすくするための設定</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># (入れなくても動くが、入ってると使いやすくなる)</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># ユーザーアイコンを表示(動画GIFアイコンが常に動く設定)</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> instances status avatar animation </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># トゥート間に区切り線を入れる設定</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> instances status separator </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="comment"># 貼付画像のサムネを常に表示する</span></span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> ins status thumbnail </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal(config)#</span><span class="bash"> <span class="built_in">exit</span></span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> <span class="comment"># 保存はこまめにしようね！</span></span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> write memory </span></span><br><span class="line">Building configuration...</span><br><span class="line">[OK]</span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> instance abyss</span></span><br><span class="line">Input instance domain: abyss.fun</span><br><span class="line"></span><br><span class="line">...初回アクセス時はここでログイン画面に遷移する...</span><br><span class="line"></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">Tooterminal#</span><span class="bash"> instance abyss</span></span><br><span class="line">Hello! ぐすくま@船団キャラバン @guskma</span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # ホームタイムラインのトゥートは背景色を青くする。</span><br><span class="line">guskma@abyss.fun# access-list 10 permit 'USER streaming updated'</span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # ローカルタイムラインの再生開始</span><br><span class="line">guskma@abyss.fun# terminal monitor local</span><br><span class="line">local Streaming start.</span><br><span class="line"></span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # ホームタイムラインの再生開始</span><br><span class="line">guskma@abyss.fun# terminal monitor home </span><br><span class="line">home Streaming start.</span><br><span class="line"></span><br><span class="line">guskma@abyss.fun# # 通知タイムラインの再生開始</span><br><span class="line">guskma@abyss.fun# terminal monitor notification</span><br></pre></td></tr></table></figure>
+
+<p><img src="ltl_htl.png" alt="HTLとLTLが一緒に流れてる例"></p>
+<p>ローカルタイムライン、ホームタイムライン、通知タイムラインがまとめて流れるTLになりました。</p>
+<p>なお、ページ読み込み時は <code>terminal monitor</code> が実行されていない状態に戻ってしまいます。<br>つまり、次回アクセス時にも再度 <code>terminal monitor</code> を打たなければならないということになります。</p>
+<p>次回起動時から <code>terminal monitor</code> を自動実行してもらうためには、URLにパラメータを付加してやります。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://wd-shiroma.github.io/tooterminal/?instance=abyss&amp;terminal=local,home,notification</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>instance=&lt;インスタンス名&gt;<br>  <code>tooterminal# instance &lt;インスタンス名&gt;</code><br>  を自動発行します。</li>
+<li>terminal=<terminal types><br>  <code>account@example.com# terminal monitor &lt;terminal type&gt;</code><br>  を自動発行します。<br>  カンマ区切りで入力することで、複数の <code>terminal monitor</code> を発行します。</li>
+</ul>
+<h3 id="「んなぁ」に即時反応できるクライアントとして利用する。"><a href="#「んなぁ」に即時反応できるクライアントとして利用する。" class="headerlink" title="「んなぁ」に即時反応できるクライアントとして利用する。"></a>「んなぁ」に即時反応できるクライアントとして利用する。</h3><p>皆さん、TLに流れる「んなぁー」に反応したくなったことありますよね？</p>
+<p><img src="nnaa.png" alt="んなぁー"></p>
+<p>しかし仕事中でTLをずっと見ていることはできない！なんてことはありませんか？</p>
+<p>こんな時に、TLのキーワードフィルター機能である <code>access-list</code> を使えばさまざまな方法でフィルター通知をしてくれるようになります。</p>
+<p>なお、「んなぁーって何？？？？？？？？？」と思われている方もいると思いますので、知りたい方は、本日<a href="/2017/12/07/advent-calendar-2017-jp/">mstdn.jpのアドベントカレンダーで投稿したもう一つの記事</a>をご確認ください！！</p>
+<p>宣伝失礼しました。</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # キーワードの設定と背景色の変更</span><br><span class="line">guskma@abyss.fun# access-list 5 permit /んな[あぁ]/ color yellow </span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # デスクトップ通知の設定(画面右下にポップアップが出るやつ)</span><br><span class="line">guskma@abyss.fun# access-list 5 add notification </span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # 合成音声をしゃべらせる（女性音声で「んなぁ」と流れる）</span><br><span class="line">guskma@abyss.fun# access-list 5 add voice んなぁ</span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # ローカルタイムラインの監視を開始</span><br><span class="line">guskma@abyss.fun# terminal monitor local</span><br><span class="line">guskma@abyss.fun# </span><br><span class="line">guskma@abyss.fun# # 設定の確認</span><br><span class="line">guskma@abyss.fun# show access-list </span><br><span class="line">Standard Status access list 5</span><br><span class="line">    permit regexp /んな[あぁ]/, color yellow, notification, voice "んなぁ"</span><br><span class="line">guskma@abyss.fun#</span><br></pre></td></tr></table></figure>
+
+<p>これで画面を見ていなくても「んなぁ」が流れてきたら背景色黄色、デスクトップ通知、合成音声「んなぁ」が流れるフィルターが完成しました。</p>
+<h3 id="その他の細々としたTIPS"><a href="#その他の細々としたTIPS" class="headerlink" title="その他の細々としたTIPS"></a>その他の細々としたTIPS</h3><p>項目として取り上げるほどではないが、使ってて便利(？)なコマンドの紹介をしておきます。</p>
+<ul>
+<li>ローカルタイムラインを遡る<br>  トゥートをダブルクリックすると、トゥートの詳細が表示されます。<br>  その中にある <code>&gt; check the LTL of the time.</code> をクリックすると、当時のLTLを閲覧することができます。<br>  <img src="sh_stat_id.png" alt="show status id ..."></li>
+<li>連投する<br>  Tooterminalは公式クライアントと同様にCtrl+Enterで投稿できるわけですが、Ctrl+Enterを押してからPOSTが完了するまでの間、投稿メッセージはそのままで、特にキー入力制限などを設けていません。<br>  そのため、Ctrl押しっぱなしにしてEnterを連打することで、連投することが可能です。<br>  (誰が使うかは不明ですが、特に直す予定ありません。仕様です)</li>
+</ul>
+<h2 id="今後の追加予定機能"><a href="#今後の追加予定機能" class="headerlink" title="今後の追加予定機能"></a>今後の追加予定機能</h2><p>正直なところ、<a href="https://abyss.fun" target="_blank" rel="noopener">abyss.fun</a>の運営で若干忙しくなってきた今日この頃です。</p>
+<p>追加したい機能はいろいろとあるので、今までから比べると更新は激落ちしますが、以下の機能は実装したいなぁとは思っています。</p>
+<ul>
+<li>リスト機能</li>
+<li>設定およびACLのインポート/エクスポート機能</li>
+<li>通知音の差し替え(ポコポコに近づけるorんなぁーする)</li>
+</ul>
+<p>僕の業務＆インスタンス運営が忙しくならない以上は開発続いていくと思います。新しいMastodonの機能にもついていこうと思います。</p>
+<p>半分以上僕が使いたいだけのクライアントですが、この記事を見て興味が持ってくれる人が出てきてくれたらうれしいです。</p>
+<p>今日のアドベントカレンダーは以上です。<br>次回はYukiya│Naycharlさんのアドベントカレンダーです。ありがとうございました。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/products/">Products</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma">Projects</a></li>
+         
+          <li><a href="https://blog.drdr.work/atom.xml">RSS</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tooterminal%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">1.</span> <span class="toc-text">Tooterminalについて</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%81%93%E3%82%8C%E3%81%AF%E3%81%AA%E3%81%AB%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">これはなに？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E4%BD%95%E3%81%8C%E9%81%95%E3%81%86%E3%81%AE%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">公式クライアントと何が違うの？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tooterminal%E3%81%A7%E4%BD%95%E3%81%8C%E5%87%BA%E6%9D%A5%E3%82%8B%E3%81%AE%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">Tooterminalで何が出来るの？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tooterminal%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%81%AE%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">Tooterminalってどうやって使うの？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E9%80%94%E5%88%A5%E3%80%81%E8%A8%AD%E5%AE%9A%E6%8A%95%E5%85%A5%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">用途別、設定投入例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E5%90%8D%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%97%E3%81%A6%E3%83%88%E3%82%A5%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">クライアント名を変更してトゥートするクライアントとして利用する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LTL%E3%81%A8HTL%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E8%A6%8B%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.2.</span> <span class="toc-text">LTLとHTLをまとめて見るためのクライアントとして利用する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8C%E3%82%93%E3%81%AA%E3%81%81%E3%80%8D%E3%81%AB%E5%8D%B3%E6%99%82%E5%8F%8D%E5%BF%9C%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%81%A8%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.3.</span> <span class="toc-text">「んなぁ」に即時反応できるクライアントとして利用する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E7%B4%B0%E3%80%85%E3%81%A8%E3%81%97%E3%81%9FTIPS"><span class="toc-number">2.4.</span> <span class="toc-text">その他の細々としたTIPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E5%BE%8C%E3%81%AE%E8%BF%BD%E5%8A%A0%E4%BA%88%E5%AE%9A%E6%A9%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">今後の追加予定機能</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&text=Tooterminalのススメ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&is_video=false&description=Tooterminalのススメ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tooterminalのススメ&body=Check out this article: https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&title=Tooterminalのススメ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/&name=Tooterminalのススメ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://mastportal.info/intent?text=Tooterminalのススメ+-+Gusk-ma project+https://blog.drdr.work/2017/12/07/advent-calendar-2017-tooterminal/"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 guskma@abyss.fun
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/products/">Products</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma">Projects</a></li>
+         
+          <li><a href="https://blog.drdr.work/atom.xml">RSS</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/v4-shims.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

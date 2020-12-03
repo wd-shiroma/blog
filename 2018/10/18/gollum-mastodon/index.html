@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="昨日、アビス丼のWikiページをMediaWikiからGollumに移行しました。 別段何か理由があってMediaWikiをやめたかったというわけではないです。たまたまGollumを使って見たくなって手元で動いているWikiサービスがアビス丼wikiだっただけです。 ホントは別のWikiを立てる計画もあったようななかったような。って感じなんですが、Wiki立てまくってホントに信用できる情報はどこな">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git管理型WikiのGollumにマストドン認証を乗せるやつ">
+<meta property="og:url" content="https://blog.drdr.work/2018/10/18/gollum-mastodon/index.html">
+<meta property="og:site_name" content="Gusk-ma project">
+<meta property="og:description" content="昨日、アビス丼のWikiページをMediaWikiからGollumに移行しました。 別段何か理由があってMediaWikiをやめたかったというわけではないです。たまたまGollumを使って見たくなって手元で動いているWikiサービスがアビス丼wikiだっただけです。 ホントは別のWikiを立てる計画もあったようななかったような。って感じなんですが、Wiki立てまくってホントに信用できる情報はどこな">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2018-10-18T08:55:00.000Z">
+<meta property="article:modified_time" content="2020-12-03T14:20:37.770Z">
+<meta property="article:author" content="guskma@abyss.fun">
+<meta property="article:tag" content="gollum">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Git管理型WikiのGollumにマストドン認証を乗せるやつ</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/products/">Products</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma">Projects</a></li>
+         
+          <li><a href="https://blog.drdr.work/atom.xml">RSS</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/12/01/advent-calendar-2019-fediverse/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/10/08/travel-blueforest-2018-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.drdr.work/2018/10/18/gollum-mastodon/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&text=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&is_video=false&description=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Git管理型WikiのGollumにマストドン認証を乗せるやつ&body=Check out this article: https://blog.drdr.work/2018/10/18/gollum-mastodon/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&name=Git管理型WikiのGollumにマストドン認証を乗せるやつ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://mastportal.info/intent?text=Git管理型WikiのGollumにマストドン認証を乗せるやつ+-+Gusk-ma project+https://blog.drdr.work/2018/10/18/gollum-mastodon/"><i class="fab fa-mastodon " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gollum%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">1.</span> <span class="toc-text">Gollumについて</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gollum%E3%81%AE%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86"><span class="toc-number">2.</span> <span class="toc-text">Gollumの導入手順</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E6%A7%8B%E7%AF%89%E7%92%B0%E5%A2%83"><span class="toc-number">2.1.</span> <span class="toc-text">0. 構築環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%9C%E6%A5%AD%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.2.</span> <span class="toc-text">1. 作業ディレクトリを用意する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-wiki%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B"><span class="toc-number">2.3.</span> <span class="toc-text">2. wiki用のリポジトリを作る</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BF%85%E8%A6%81%E3%81%AAapt%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.4.</span> <span class="toc-text">3. 必要なaptパッケージを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-rbenv%E3%81%8B%E3%82%89ruby%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.5.</span> <span class="toc-text">4. rbenvからrubyを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%BF%85%E8%A6%81%E3%81%AAgem%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.6.</span> <span class="toc-text">5. 必要なgemパッケージを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-omnigollum%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.7.</span> <span class="toc-text">6. omnigollumを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-config-rb%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><span class="toc-number">2.8.</span> <span class="toc-text">7. config.rbを作成する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-CLIENT-ID-SECRET%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8BDB%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B"><span class="toc-number">2.9.</span> <span class="toc-text">8. CLIENT_ID&#x2F;SECRETを管理するDBを用意する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A%E8%B5%B7%E5%8B%95%E3%81%95%E3%81%9B%E3%81%A6%E3%81%BF%E3%82%8B"><span class="toc-number">2.10.</span> <span class="toc-text">9. とりあえず起動させてみる</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%81%8A%E3%81%BE%E3%81%91%E3%81%AE%E6%89%8B%E9%A0%86"><span class="toc-number">3.</span> <span class="toc-text">おまけの手順</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EX1-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E5%8C%96%E3%81%99%E3%82%8B"><span class="toc-number">3.1.</span> <span class="toc-text">EX1. サービス化する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EX2-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0CSS-JS%E3%82%92%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B"><span class="toc-number">3.2.</span> <span class="toc-text">EX2. カスタムCSS&#x2F;JSを導入する</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"><span class="toc-number">4.</span> <span class="toc-text">終わりに</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TIPS"><span class="toc-number">5.</span> <span class="toc-text">TIPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#omniauth%E3%81%A7%E5%8F%96%E5%BE%97%E3%81%A7%E3%81%8D%E3%82%8Bmastodon%E3%81%AE%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">5.1.</span> <span class="toc-text">- omniauthで取得できるmastodonのパラメータについて</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E9%81%B8%E6%8A%9E%E6%99%82%E3%81%AE%E3%83%AD%E3%82%B4%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">5.2.</span> <span class="toc-text">- OAuthプロバイダ選択時のロゴ表示について</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gollum%E3%81%AE%E3%83%95%E3%82%A1%E3%83%93%E3%82%B3%E3%83%B3%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">5.3.</span> <span class="toc-text">- gollumのファビコン表示について</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%81%A8%E3%81%93%E3%82%8D%E3%81%A7h1%E8%A4%87%E6%95%B0%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E3%81%AEW3C%E7%9A%84%E3%81%AB%E3%81%AF%E3%82%88%E3%81%8F%E3%81%AA%E3%81%84%E3%82%89%E3%81%97%E3%81%84%E3%82%93%E3%81%A7%E3%81%99%E3%82%88%E3%80%82"><span class="toc-number">5.4.</span> <span class="toc-text">- ところでh1複数使用するのW3C的にはよくないらしいんですよ。</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Git管理型WikiのGollumにマストドン認証を乗せるやつ
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Gusk-ma project</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-18T08:55:00.000Z" itemprop="datePublished">2018-10-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/gollum/" rel="tag">gollum</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>昨日、<a href="https://wiki.abyss.fun" target="_blank" rel="noopener">アビス丼のWikiページ</a>をMediaWikiからGollumに移行しました。</p>
+<p>別段何か理由があってMediaWikiをやめたかったというわけではないです。たまたまGollumを使って見たくなって手元で動いているWikiサービスがアビス丼wikiだっただけです。</p>
+<p>ホントは別のWikiを立てる計画もあったようななかったような。って感じなんですが、Wiki立てまくってホントに信用できる情報はどこなんじゃい！ってなるのも嫌だったので、とりあえず見送った感じなんです。雑。</p>
+<p>今回はとりあえずGollumを動かすまでの手順と、認証にマストドンアカウントを作るところあたりをざっくり紹介しようと思います。</p>
+<h2 id="Gollumについて"><a href="#Gollumについて" class="headerlink" title="Gollumについて"></a>Gollumについて</h2><p>Ruby製の軽量なWikiサービスを構築することができます。</p>
+<p>記事のバージョン管理にgitを使っているので、バックアップとしてgithubに記事を上げておく。なんてこともできます。便利！</p>
+<p>ただし見た目がシンプルすぎるのでカスタムCSS入れてデザイン変える必要が出てきたりとか、認証できるけどログアウトができなかったりとかします。微妙に不便！</p>
+<p>まぁ、軽いのとマークダウン使えるのがウリってだけな感じがします。</p>
+<p>それとOAuth2認証するのに便利すぎるライブラリであるomniauthをサポートしているのは、マストドンユーザーにとって嬉しいですね。</p>
+<p>マストドン関連サービスとしてWikiを立てたい鯖缶各位が(いるかどうかは知らんけど)。いるようであればGollumの導入を検討してみるのもありなんじゃないかと思います。</p>
+<h2 id="Gollumの導入手順"><a href="#Gollumの導入手順" class="headerlink" title="Gollumの導入手順"></a>Gollumの導入手順</h2><p>今回の肝であるGollum導入手順について紹介です。</p>
+<p>本体だけであれば <code>gem install gollum</code> と打つだけですみますが。今回はOAuth2認証とカスタムCSS/JSについても書こうと思ってるのでちょっとややこしい感じです。</p>
+<h3 id="0-構築環境"><a href="#0-構築環境" class="headerlink" title="0. 構築環境"></a>0. 構築環境</h3><ul>
+<li>ubuntu18.04LTS</li>
+<li>rbenv</li>
+<li>gollum本体はgemパッケージインストール</li>
+<li>omnigollumはソースコードビルドしてからインストール</li>
+<li>omniauth-mastodonのCLIENT_ID管理にActiveRecord(sqlite3)を使用</li>
+<li>カスタムCSS/JSのビルド用にNode.js/yarn環境も使用</li>
+</ul>
+<p>omnigollumはgollumでOAuth2認証を有効にするためのモジュールで、その中に更にomniauth-mastodonを組み込むことになります。</p>
+<p>bundler環境でも動かせそうですが、今回は本家README.mdに沿ってgemから導入する手順で紹介します。</p>
+<h3 id="1-作業ディレクトリを用意する。"><a href="#1-作業ディレクトリを用意する。" class="headerlink" title="1. 作業ディレクトリを用意する。"></a>1. 作業ディレクトリを用意する。</h3><p>最初は「このディレクトリ掘ってその中にこのファイルを置いて…」みたいな手順にしようかと思ったんですが。<br>面倒なのでGitHubに作業用ディレクトリをひとまとめにしたリポジトリを上げておいたので、そのまま使ってください。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/wd-shiroma/gollum-work.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> gollum-work</span></span><br></pre></td></tr></table></figure>
+
+<p>この中に入ってるファイル群をざっくり紹介すると、以下のような感じです。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./</span><br><span class="line">+ dist ... 設定ファイル等のサンプルを入れてる</span><br><span class="line">+ mastodon ... OAuth2認証でマストドンを使う時のスクリプトとか入れてある</span><br><span class="line">+ util ... カスタムCSS/JSの作成支援用ユーティリティ(要node.js)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-wiki用のリポジトリを作る"><a href="#2-wiki用のリポジトリを作る" class="headerlink" title="2. wiki用のリポジトリを作る"></a>2. wiki用のリポジトリを作る</h3><p>最初に述べたようにGollumはgitでバージョン管理をするwikiサービスなので、gitリポジトリを作成します。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir repos</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> repos</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ..</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-必要なaptパッケージを入れる"><a href="#3-必要なaptパッケージを入れる" class="headerlink" title="3. 必要なaptパッケージを入れる"></a>3. 必要なaptパッケージを入れる</h3><p>minimalな環境から導入する想定です。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt update &amp;&amp; sudo apt upgrade -y</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install -y gcc make sqlite3 libsqlite3-dev libjemalloc-dev</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-rbenvからrubyを入れる"><a href="#4-rbenvからrubyを入れる" class="headerlink" title="4. rbenvからrubyを入れる"></a>4. rbenvからrubyを入れる</h3><p>マストドン界隈で今話題のjemallocを使ってるrubyを使えるようにします。<br>(gollumくらいだったら大して性能に違いはないけど)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> rbenv入れる</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/rbenv/rbenv.git ~/.rbenv</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'export PATH="$HOME/.rbenv/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'eval "$(rbenv init -)"'</span> &gt;&gt; ~/.bashrc</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> ~/.bashrc</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> rbenv-build入れる</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p <span class="string">"<span class="variable">$(rbenv root)</span>"</span>/plugins</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/rbenv/ruby-build.git <span class="string">"<span class="variable">$(rbenv root)</span>"</span>/plugins/ruby-build</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> ruby入れる(rubyバージョンは最新のに変えてね)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.5.2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> rbenv global 2.5.2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-必要なgemパッケージを入れる"><a href="#5-必要なgemパッケージを入れる" class="headerlink" title="5. 必要なgemパッケージを入れる"></a>5. 必要なgemパッケージを入れる</h3><p>何も考えず、まとめてインストールしちゃいます。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gem install --no-ri --no-rdoc gollum omniauth omniauth-mastodon mastodon-api activerecord sqlite3 sqlite3-ruby dbd-sqlite3</span></span><br></pre></td></tr></table></figure>
+
+<p>GitHubなど、他の認証も入れたい場合は別途omniauth-githubなど追加で入れてください。</p>
+<h3 id="6-omnigollumを入れる"><a href="#6-omnigollumを入れる" class="headerlink" title="6. omnigollumを入れる"></a>6. omnigollumを入れる</h3><p>GollumのOAuth2プラグインomnigollumは、gemパッケージでも配布されています。<br>しかしそのまま入れるとマストドンのロゴが表示されません。<br>僕の用意したリポジトリからcherry-pickしてロゴを取得してから、ソースコードビルドしてインストールします。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/arr2036/omnigollum.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> omnigollum</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add remote guskma https://github.com/wd-shiroma/omnigollum.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git fetch guskma mastodon_logo</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git cherry-pick guskma/mastodon_logo c58a4f7</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gem build omnigollum.gemspec</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gem install omnigollum-*.gem</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ..</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-config-rbを作成する"><a href="#7-config-rbを作成する" class="headerlink" title="7. config.rbを作成する"></a>7. config.rbを作成する</h3><p>作業ディレクトリの <code>dist</code> 配下に置いてあるサンプルコードをコピーして利用しましょう。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cp dist/omnigollum-config.rb config.rb</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vim config.rb</span></span><br></pre></td></tr></table></figure>
+
+<p>マストドン認証を有効にするには48～50行目と53～66行目のコメントを解除してください。</p>
+<p>GitHub認証を有効にするには28～34行目と48～50行目のコメントを解除してください。</p>
+<h3 id="8-CLIENT-ID-SECRETを管理するDBを用意する"><a href="#8-CLIENT-ID-SECRETを管理するDBを用意する" class="headerlink" title="8. CLIENT_ID/SECRETを管理するDBを用意する"></a>8. CLIENT_ID/SECRETを管理するDBを用意する</h3><p>今回sqlite3を使用してますが、他のDBを使いたい場合は各自で必要なgemを入れて <code>mastodon/instances.rb</code> で接続先DBを直して利用してください。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./mastodon/create_db.sh</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ls -l mastodon/stored.db <span class="comment"># ファイルが有ることを確認</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="9-とりあえず起動させてみる"><a href="#9-とりあえず起動させてみる" class="headerlink" title="9. とりあえず起動させてみる"></a>9. とりあえず起動させてみる</h3><p>ここまでくれば実際に動くようになります。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gollum ./repos --config ./config.rb</span></span><br></pre></td></tr></table></figure>
+
+<p>正しく実行されれば <code>localhost:4567</code> が待受状態になります。</p>
+<p>アクセスすると、初期ページである<code>/Home</code>を作成するページにリダイレクトされ、OAuth2認証画面が表示されるはずです。</p>
+<h2 id="おまけの手順"><a href="#おまけの手順" class="headerlink" title="おまけの手順"></a>おまけの手順</h2><h3 id="EX1-サービス化する"><a href="#EX1-サービス化する" class="headerlink" title="EX1. サービス化する"></a>EX1. サービス化する</h3><p>必要に応じてサービスとして起動させられるようにしましょう。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo cp dist/gollum.service /etc/systemd/system/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/systemd/system/gollum.service</span></span><br></pre></td></tr></table></figure>
+
+<p>gollumuserを自分のユーザ名に置換してください。</p>
+<p>ここまでくれば、サービスとして起動できるようになります。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo systemctl daemon-reload</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo systemctl start gollum</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="EX2-カスタムCSS-JSを導入する"><a href="#EX2-カスタムCSS-JSを導入する" class="headerlink" title="EX2. カスタムCSS/JSを導入する"></a>EX2. カスタムCSS/JSを導入する</h3><p>Gollumはデフォルトで、カスタムCSS/JSを利用できる様になっています。</p>
+<p>wikiリポジトリの <code>/custom.(css|js)</code> がカスタムCSS/JSとして認識されるんですが、直で書くのはダサいので、ビルドするだけのツールを同梱しました。</p>
+<p>SCSSやES6以降の書き方が出来るし複数のファイルを一つにまとめることができるので、コレを使ったほうがいいと思います。</p>
+<p><strong>※このutilはnode.jsとyarnを利用しています。今回こちらの導入手順については解説を省略します。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> util</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yarn install</span></span><br></pre></td></tr></table></figure>
+
+<p>ソースコードを監視して、ファイルが更新されたら自動でビルドされるようにしてあります。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> yarn run watch</span></span><br></pre></td></tr></table></figure>
+
+<p><code>style/*.scss</code> 及び <code>javascript/*.js</code> ファイルを作成してください。</p>
+<p><strong>GollumはjQuery1.7を利用しているので、そのままjQuery記法が使えます</strong></p>
+<p>ビルドされたファイルはWikiリポジトリである <code>repos</code> の中に吐き出されます。</p>
+<p>デフォルトでtwemojiを適用させるコードだけ用意してあります。煮るなり焼くなり好きにしてください。</p>
+<h2 id="終わりに"><a href="#終わりに" class="headerlink" title="終わりに"></a>終わりに</h2><p>以上でgollumの導入手順は終了です。良きマストドンライフを。</p>
+<h2 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h2><p>以下は蛇足。</p>
+<h3 id="omniauthで取得できるmastodonのパラメータについて"><a href="#omniauthで取得できるmastodonのパラメータについて" class="headerlink" title="- omniauthで取得できるmastodonのパラメータについて"></a>- omniauthで取得できるmastodonのパラメータについて</h3><p>Omnigollum::Model::OmnigollumUser#initializeあたりでomniauthのパラメータを取得する処理を入れている</p>
+<p><a href="https://github.com/arr2036/omnigollum/blob/master/lib/omnigollum.rb#L16" target="_blank" rel="noopener">https://github.com/arr2036/omnigollum/blob/master/lib/omnigollum.rb#L16</a></p>
+<p>hashの中身がomniauthの取得したパラメータとなっている。</p>
+<p>Omnigollumはその中から厳選して、 <code>:uid, :name, :email, :nickname, :provider</code> のパラメータをconfig.rbで使えるようにしている。</p>
+<p><a href="https://github.com/arr2036/omnigollum/blob/master/lib/omnigollum.rb#L12" target="_blank" rel="noopener">https://github.com/arr2036/omnigollum/blob/master/lib/omnigollum.rb#L12</a></p>
+<p>omniauth-mastodonから渡されるパラメータは以下の通り</p>
+<ul>
+<li>:uid … acct</li>
+<li>:name … username</li>
+<li>:email … (nil)</li>
+<li>:nickname … username</li>
+<li>:provider … ‘mastodon’</li>
+</ul>
+<p>Omnigollumではデフォルトで、:nameと:emailをgitのコミット時に使用するようにしているが、:emailが空のためエラーが出てしまう。<br>エラーを回避するために、ダミーメールアドレスをデフォルト値としてconfig.rbに設定してやる必要がある。(:default_email)</p>
+<p>コミットに必要なuser.nameとuser.emailで使用するパラメータの変更は:author_formatと:author_emailで <code>user.provider == &#39;mastodon&#39;</code> の条件によってマストドンのみ:uidを使用するようにする</p>
+<h3 id="OAuthプロバイダ選択時のロゴ表示について"><a href="#OAuthプロバイダ選択時のロゴ表示について" class="headerlink" title="- OAuthプロバイダ選択時のロゴ表示について"></a>- OAuthプロバイダ選択時のロゴ表示について</h3><p>Omnigollumビルド前にpublic/images/mastodon_logo.pngを作成しておくことによりこの問題は回避することができる。</p>
+<h3 id="gollumのファビコン表示について"><a href="#gollumのファビコン表示について" class="headerlink" title="- gollumのファビコン表示について"></a>- gollumのファビコン表示について</h3><p>wikiリポジトリのルートディレクトリに<code>favicon.ico</code>を置いた後 <strong>ページを一つ編集なり作成なりしてコミットを一つ進めてやらないと反映されない</strong> かもしれない。<br>コマンドラインから<code>git add</code>と<code>git commit</code>しても意味なかった。</p>
+<h3 id="ところでh1複数使用するのW3C的にはよくないらしいんですよ。"><a href="#ところでh1複数使用するのW3C的にはよくないらしいんですよ。" class="headerlink" title="- ところでh1複数使用するのW3C的にはよくないらしいんですよ。"></a>- ところでh1複数使用するのW3C的にはよくないらしいんですよ。</h3><p><a href="https://togetter.com/li/1058977" target="_blank" rel="noopener">h1要素は複数回使って良いのか!? HTML5.1に関するW3CとWHATWGの主張の違い - Togetter</a></p>
+<p>でもマークダウンで何か書く時って <code># 大見出し</code> 結構使うじゃん？</p>
+<p>Gollumとか、大見出し複数あるからh1大量にある状態なんだよね。</p>
+<p>記事書き始めた時に、これどうしたらいいだろうなぁ。と思ってトゥートしたら軽くバズったし。やっぱみんな気になってるんだよね。</p>
+<p>1ページに一つみたいなの、sectionタグとかそういうののほうがいいんじゃないの？とか。</p>
+<p>マークダウンで <code># 大見出し</code> タグはh2からにしてくれよ～とか。</p>
+<p>…</p>
+<p>ここまで考えて思考放棄した。もうh1使いまくっちゃえばいいや～。</p>
+<p>紛らわしい定義をしたW3Cが悪い！僕やほかの方々は悪くない！</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/products/">Products</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma">Projects</a></li>
+         
+          <li><a href="https://blog.drdr.work/atom.xml">RSS</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gollum%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">1.</span> <span class="toc-text">Gollumについて</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gollum%E3%81%AE%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86"><span class="toc-number">2.</span> <span class="toc-text">Gollumの導入手順</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E6%A7%8B%E7%AF%89%E7%92%B0%E5%A2%83"><span class="toc-number">2.1.</span> <span class="toc-text">0. 構築環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%9C%E6%A5%AD%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B%E3%80%82"><span class="toc-number">2.2.</span> <span class="toc-text">1. 作業ディレクトリを用意する。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-wiki%E7%94%A8%E3%81%AE%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B"><span class="toc-number">2.3.</span> <span class="toc-text">2. wiki用のリポジトリを作る</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BF%85%E8%A6%81%E3%81%AAapt%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.4.</span> <span class="toc-text">3. 必要なaptパッケージを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-rbenv%E3%81%8B%E3%82%89ruby%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.5.</span> <span class="toc-text">4. rbenvからrubyを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%BF%85%E8%A6%81%E3%81%AAgem%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.6.</span> <span class="toc-text">5. 必要なgemパッケージを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-omnigollum%E3%82%92%E5%85%A5%E3%82%8C%E3%82%8B"><span class="toc-number">2.7.</span> <span class="toc-text">6. omnigollumを入れる</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-config-rb%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><span class="toc-number">2.8.</span> <span class="toc-text">7. config.rbを作成する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-CLIENT-ID-SECRET%E3%82%92%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8BDB%E3%82%92%E7%94%A8%E6%84%8F%E3%81%99%E3%82%8B"><span class="toc-number">2.9.</span> <span class="toc-text">8. CLIENT_ID&#x2F;SECRETを管理するDBを用意する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A%E8%B5%B7%E5%8B%95%E3%81%95%E3%81%9B%E3%81%A6%E3%81%BF%E3%82%8B"><span class="toc-number">2.10.</span> <span class="toc-text">9. とりあえず起動させてみる</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%81%8A%E3%81%BE%E3%81%91%E3%81%AE%E6%89%8B%E9%A0%86"><span class="toc-number">3.</span> <span class="toc-text">おまけの手順</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EX1-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E5%8C%96%E3%81%99%E3%82%8B"><span class="toc-number">3.1.</span> <span class="toc-text">EX1. サービス化する</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EX2-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0CSS-JS%E3%82%92%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B"><span class="toc-number">3.2.</span> <span class="toc-text">EX2. カスタムCSS&#x2F;JSを導入する</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%AB"><span class="toc-number">4.</span> <span class="toc-text">終わりに</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TIPS"><span class="toc-number">5.</span> <span class="toc-text">TIPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#omniauth%E3%81%A7%E5%8F%96%E5%BE%97%E3%81%A7%E3%81%8D%E3%82%8Bmastodon%E3%81%AE%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">5.1.</span> <span class="toc-text">- omniauthで取得できるmastodonのパラメータについて</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E9%81%B8%E6%8A%9E%E6%99%82%E3%81%AE%E3%83%AD%E3%82%B4%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">5.2.</span> <span class="toc-text">- OAuthプロバイダ選択時のロゴ表示について</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gollum%E3%81%AE%E3%83%95%E3%82%A1%E3%83%93%E3%82%B3%E3%83%B3%E8%A1%A8%E7%A4%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"><span class="toc-number">5.3.</span> <span class="toc-text">- gollumのファビコン表示について</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%81%A8%E3%81%93%E3%82%8D%E3%81%A7h1%E8%A4%87%E6%95%B0%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E3%81%AEW3C%E7%9A%84%E3%81%AB%E3%81%AF%E3%82%88%E3%81%8F%E3%81%AA%E3%81%84%E3%82%89%E3%81%97%E3%81%84%E3%82%93%E3%81%A7%E3%81%99%E3%82%88%E3%80%82"><span class="toc-number">5.4.</span> <span class="toc-text">- ところでh1複数使用するのW3C的にはよくないらしいんですよ。</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.drdr.work/2018/10/18/gollum-mastodon/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&text=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&is_video=false&description=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Git管理型WikiのGollumにマストドン認証を乗せるやつ&body=Check out this article: https://blog.drdr.work/2018/10/18/gollum-mastodon/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&title=Git管理型WikiのGollumにマストドン認証を乗せるやつ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.drdr.work/2018/10/18/gollum-mastodon/&name=Git管理型WikiのGollumにマストドン認証を乗せるやつ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://mastportal.info/intent?text=Git管理型WikiのGollumにマストドン認証を乗せるやつ+-+Gusk-ma project+https://blog.drdr.work/2018/10/18/gollum-mastodon/"><i class="fab fa-mastodon fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 guskma@abyss.fun
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/products/">Products</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/wd-shiroma">Projects</a></li>
+         
+          <li><a href="https://blog.drdr.work/atom.xml">RSS</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/v4-shims.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
