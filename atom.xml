@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.drdr.work/"/>
-  <updated>2020-12-03T22:19:09.700Z</updated>
+  <updated>2020-12-14T13:42:09.200Z</updated>
   <id>https://blog.drdr.work/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>おなかすいた</title>
+    <link href="https://blog.drdr.work/2020/12/15/advent-calendar-2020-delicious/"/>
+    <id>https://blog.drdr.work/2020/12/15/advent-calendar-2020-delicious/</id>
+    <published>2020-12-14T15:00:00.000Z</published>
+    <updated>2020-12-14T13:42:09.200Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;iframe src=&quot;https://abyss.fun/@guskma/99993312759351143/embed&quot; class=&quot;mastodon-embed&quot; style=&quot;max-width: 100%; border: 0&quot; width=&quot;400&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="advent_calender_2020 gochisou_photo" scheme="https://blog.drdr.work/tags/advent-calender-2020-gochisou-photo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Slackライク分散SNS「Matrix」の紹介</title>
-    <link href="https://blog.drdr.work/2020/12/03/advent-calendar-2020-fediverse-1/"/>
-    <id>https://blog.drdr.work/2020/12/03/advent-calendar-2020-fediverse-1/</id>
-    <published>2020-12-03T14:27:16.000Z</published>
-    <updated>2020-12-03T22:19:09.700Z</updated>
+    <link href="https://blog.drdr.work/2020/12/04/advent-calendar-2020-fediverse-1/"/>
+    <id>https://blog.drdr.work/2020/12/04/advent-calendar-2020-fediverse-1/</id>
+    <published>2020-12-03T15:00:00.000Z</published>
+    <updated>2020-12-14T13:09:39.710Z</updated>
     
     <summary type="html">
     
