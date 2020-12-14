@@ -4,8 +4,6 @@ date: 2020-12-15 00:00:00
 tags: advent_calender_2020 gochisou_photo
 ---
 
-# おなかすいた
-
 <iframe src="https://abyss.fun/@guskma/99993312759351143/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe>
 
 ![gochisou_photo](20200322_030732053.jpg)
