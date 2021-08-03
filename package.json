@@ -21,7 +21,7 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.3.3",
     "node-gyp": "^6.0.1",
-    "tar": "^5.0.5",
+    "tar": "^5.0.7",
     "uglify-js": "^3.6.9"
   },
   "scripts": {
